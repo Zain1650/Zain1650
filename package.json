@@ -4,14 +4,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev --host 0.0.0.0",
-    "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
-    "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview --host 0.0.0.0",
-    "check": "ASTRO_TELEMETRY_DISABLED=1 astro check",
+    "dev": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro dev --host 0.0.0.0",
+    "build": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "preview": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro preview --host 0.0.0.0",
+    "check": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro check",
     "test": "node scripts/smoke.mjs",
-    "dev:status": "ASTRO_TELEMETRY_DISABLED=1 astro dev status",
-    "dev:logs": "ASTRO_TELEMETRY_DISABLED=1 astro dev logs",
-    "dev:stop": "ASTRO_TELEMETRY_DISABLED=1 astro dev stop"
+    "dev:status": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro dev status",
+    "dev:logs": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro dev logs",
+    "dev:stop": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro dev stop"
   },
   "dependencies": {
     "astro": "^7.4.2"
@@ -19,6 +19,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.6",
     "@playwright/test": "^1.56.1",
+    "cross-env": "^10.1.0",
     "typescript": "^5.9.3"
   },
   "engines": {

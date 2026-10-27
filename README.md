@@ -4,16 +4,18 @@ A responsive consultancy website for **zperformance.co.uk**, built with Astro an
 
 ## Develop
 
-Use Node.js **24**, matching `.nvmrc`. Astro 7 requires at least Node 22.23.4; Node 24 is the recommended version for this project.
+Use Node.js **24**, matching `.nvmrc`. Astro 7 requires at least Node 22.23.4; Node 24 is the recommended version for this project. Check with `node --version`; `.nvmrc` does not switch Node automatically in Windows PowerShell.
 
 ```sh
 npm ci
 npm run dev
 ```
 
+These npm commands work in Windows PowerShell, Command Prompt, macOS and Linux. Once the server starts, open the address printed in the terminal.
+
 Run these commands from the repository root. `npm run check` checks Astro and TypeScript; `npm run build` creates the production site in `dist/`; `npm run preview` serves that output locally.
 
-For the managed development server, `npm run dev:status` checks its state, `npm run dev:logs` shows its logs and `npm run dev:stop` stops it. The npm commands disable Astro telemetry so they also work in cloud environments with a read-only home directory.
+For the managed development server, `npm run dev:status` checks its state, `npm run dev:logs` shows its logs and `npm run dev:stop` stops it. The npm commands use `cross-env` to disable Astro telemetry on every supported platform, including cloud environments with a read-only home directory.
 
 The site includes services, an approach page, about and contact pages, individual case studies, and an Insights index with article/video filters. The theme toggle supports light and dark modes, follows the system preference on first visit and remembers the visitor’s choice.
 
@@ -29,12 +31,14 @@ Images are stored locally in `public/images/`. The architecture and landscape vi
 
 ## Browser checks
 
+The browser smoke harness currently runs in Linux/cloud environments. The development, build and preview npm scripts also support Windows.
+
 After building, install the test browser once and run the smoke checks:
 
 ```sh
-PLAYWRIGHT_BROWSERS_PATH=/tmp/zperformance-browsers npx playwright install chromium
+npx playwright install chromium
 npm run build
-PLAYWRIGHT_BROWSERS_PATH=/tmp/zperformance-browsers npm test
+npm test
 ```
 
 The smoke script launches the production preview on port 4322 and stops it afterwards. To test an already running local server, set `BASE_URL` instead. It checks built routes, internal links and assets, mobile/desktop layout, persistent themes, the mobile menu and blog filters. Browser-only fixtures exercise a configured video player and contact email, without sending messages or making a real YouTube request. It also checks the default unconfigured contact state and saves screenshots under `/tmp/`.
