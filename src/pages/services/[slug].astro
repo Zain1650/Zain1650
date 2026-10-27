@@ -1,0 +1,8 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CTA from '../../components/CTA.astro';
+import { services } from '../../data/content';
+export function getStaticPaths() { return services.map(service => ({params: {slug: service.slug},props: {service}})); }
+const {service} = Astro.props;
+---
+<Layout title={service.title} description={service.description}><div class="wrap"><section class="page-hero"><a class="eyebrow" href="/services/">← All services</a><h1>{service.title}</h1><p>{service.description}</p><a href="/contact/" class="text-link">Discuss your priorities <span aria-hidden="true">⟶</span></a></section><section class="page-section two-column"><h2>Expertise that<br/>moves you forward.</h2><div class="prose"><p>{service.short} Our approach starts with understanding your priorities, your people and the constraints you work within.</p><h2>How we can help</h2><ul class="deliverables">{service.deliverables.map(item=><li>{item}</li>)}</ul><h2>Designed around your business</h2><p>We agree the scope, the measures of success and a practical plan before delivery begins. You get clear recommendations, transparent decisions and knowledge your team can keep using.</p></div></section></div><CTA/></Layout>

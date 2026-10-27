@@ -1,0 +1,12 @@
+---
+import type { Post } from '../data/content';
+interface Props { post: Post; index?: number; }
+const { post, index = 0 } = Astro.props;
+const images = ['/images/landscape.jpg', '/images/architecture.jpg', '/images/landscape.jpg'];
+---
+<article class="post-card" data-kind={post.kind}>
+  <a href={`/blog/${post.slug}/`} class="post-image" tabindex="-1" aria-hidden="true"><img src={images[index % 3]} alt="" loading="lazy" width="600" height="400" />{post.kind === 'video' && <span class="video-badge">▷</span>}</a>
+  <div class="post-meta">{post.category} <span aria-hidden="true"> / </span> {post.readTime}</div>
+  <h3><a href={`/blog/${post.slug}/`}>{post.title}</a></h3><p>{post.excerpt}</p>
+  <a class="text-link" href={`/blog/${post.slug}/`}>{post.kind === 'video' ? 'View video' : 'Read insight'} <span aria-hidden="true">⟶</span></a>
+</article>

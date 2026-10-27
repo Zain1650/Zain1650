@@ -1,0 +1,10 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { posts } from '../../data/content';
+import { site } from '../../data/site';
+---
+<Layout title="Insights for what’s next" description="Perspectives on cloud, cybersecurity, practical AI and the technology decisions that matter."><div class="wrap"><section class="page-hero"><div class="eyebrow">The Z Performance journal</div><h1>Fresh thinking.<br/>Forward momentum.</h1><p>Practical perspectives on technology, business and what comes next. Explore our articles and video conversations.</p>{site.youtubeChannel && <a class="text-link" href={site.youtubeChannel} target="_blank" rel="noopener noreferrer">Visit our YouTube channel <span aria-hidden="true">↗</span></a>}</section><section class="page-section"><div class="filters" role="group" aria-label="Filter insights"><button type="button" class="filter" data-filter="all" aria-pressed="true">All insights</button><button type="button" class="filter" data-filter="article" aria-pressed="false">Articles</button><button type="button" class="filter" data-filter="video" aria-pressed="false">Videos</button></div><p id="filter-status" class="sr-only" role="status" aria-live="polite"></p><div class="post-grid blog-grid">{posts.map((post,index)=><PostCard post={post} index={index}/>)}</div></section></div><script>
+const filters = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+filters.forEach(button=>button.addEventListener('click',()=>{const filter=button.dataset.filter;filters.forEach(item=>item.setAttribute('aria-pressed',String(item===button)));let count=0;document.querySelectorAll<HTMLElement>('[data-kind]').forEach(card=>{card.hidden=filter!=='all'&&card.dataset.kind!==filter;if(!card.hidden)count++;});const status=document.getElementById('filter-status');if(status)status.textContent=`Showing ${count} ${filter==='video'?'video':filter==='article'?'articles':'insights'}.`;}));
+</script></Layout>

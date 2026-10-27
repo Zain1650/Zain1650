@@ -1,0 +1,12 @@
+---
+interface Props { name: string; }
+const { name } = Astro.props;
+const paths: Record<string, string> = {
+  cloud: 'M7 18a5 5 0 0 1-1-9.9 7 7 0 0 1 13-1.5A5.7 5.7 0 0 1 19 18H7Z',
+  security: 'M12 3 3.5 6.5v6C3.5 18 12 22 12 22s8.5-4 8.5-9.5v-6L12 3Zm-4 9 3 3 5-6',
+  ai: 'M9 4a3 3 0 0 0-5 3 4 4 0 0 0-1 7 4 4 0 0 0 6 5M15 4a3 3 0 0 1 5 3 4 4 0 0 1 1 7 4 4 0 0 1-6 5M9 2v20M15 2v20M5 9h4M15 15h4M5 15h4M15 9h4',
+  strategy: 'M4 20v-5h2v5H4Zm5 0V11h2v9H9Zm5 0V7h2v13h-2Zm5 0V2h2v18h-2Z',
+};
+const key = name.includes('cloud') ? 'cloud' : name.includes('cyber') ? 'security' : name.includes('ai') ? 'ai' : 'strategy';
+---
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={paths[key]} /></svg>

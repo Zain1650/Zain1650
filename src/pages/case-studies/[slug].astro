@@ -1,0 +1,8 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CTA from '../../components/CTA.astro';
+import {caseStudies} from '../../data/content';
+export function getStaticPaths(){return caseStudies.map(item=>({params:{slug:item.slug},props:{item}}));}
+const {item} = Astro.props;
+---
+<Layout title={item.title} description={item.summary}><div class="wrap"><section class="page-hero"><a href="/case-studies/" class="eyebrow">← All case studies</a><h1>{item.title}</h1><p>{item.summary}</p></section><section class="page-section"><p class="notice">{item.editorialNote}</p><img src={item.image} class="article-hero-img" alt="A perspective on the possibilities ahead" width="1400" height="700"/><div class="reading-layout"><aside class="reading-aside"><div><div class="eyebrow">Sector</div><p>{item.sector}</p></div><div><div class="eyebrow">Type</div><p>{item.label}</p></div></aside><div class="prose"><h2 style="margin-top:0">The challenge</h2><p>{item.challenge}</p><h2>A considered approach</h2><ol class="deliverables">{item.approach.map(text=><li>{text}</li>)}</ol><h2>What success could look like</h2><ul class="deliverables">{item.outcome.map(text=><li>{text}</li>)}</ul></div></div></section></div><CTA/></Layout>

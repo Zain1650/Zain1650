@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import CTA from '../components/CTA.astro';
+import PostCard from '../components/PostCard.astro';
+import { services, posts, caseStudies } from '../data/content';
+const featured = caseStudies[0];
+---
+<Layout>
+  <div class="wrap">
+    <section class="hero" aria-labelledby="hero-title">
+      <img class="hero-image" src="/images/architecture.jpg" alt="An angular glass building reaching towards a bright sky" width="1536" height="1024" fetchpriority="high" />
+      <div class="hero-copy"><div class="eyebrow">Technology for what’s next</div><h1 id="hero-title">Strategic Technology<br />for a Stronger Tomorrow</h1><p>We help ambitious organisations harness the power of cloud, cybersecurity, AI and technology strategy to drive real business outcomes — today and for what’s next.</p><div class="hero-actions"><a class="button" href="/contact/">Let's talk <span aria-hidden="true">⟶</span></a><a href="/approach/" class="text-link">Our approach <span aria-hidden="true">⟶</span></a></div></div>
+      <div class="hero-caption" aria-hidden="true">PEOPLE<br />TECHNOLOGY<br />PROGRESS</div>
+    </section>
+    <section class="services-section" aria-labelledby="services-label"><div class="section-label"><h2 class="eyebrow" id="services-label">Our services</h2><span class="eyebrow trailing">From strategy to real-world impact</span></div><div class="service-grid">{services.map(service => <a href={`/services/${service.slug}/`} class="service-card"><Icon name={service.slug}/><h3>{service.title}</h3><p>{service.short}</p><span class="card-arrow" aria-hidden="true">⟶</span></a>)}</div></section>
+    <section class="impact" aria-labelledby="impact-title"><div class="impact-copy"><div class="section-label"><span class="eyebrow">Why Z Performance Systems</span></div><h2 id="impact-title">Technology expertise.<br />Real business impact.</h2><p>We combine technical depth with commercial insight to help organisations navigate complexity, reduce risk and build lasting capability.</p><div class="principles"><div><strong>Clarity.</strong><span>Independent advice</span></div><div><strong>Purpose.</strong><span>Practical delivery</span></div><div><strong>Progress.</strong><span>Lasting capability</span></div></div></div><div class="impact-image"><img src="/images/landscape.jpg" alt="A wide mountain landscape opening towards the horizon" loading="lazy" width="1400" height="933"/><div class="image-note">Bolder<br/>solutions<br/>Brighter<br/>possibilities<br/>—</div></div></section>
+    <section class="featured" aria-labelledby="featured-label"><div class="section-label"><h2 class="eyebrow" id="featured-label">A vision in practice</h2></div><a class="featured-case" href={`/case-studies/${featured.slug}/`}><div class="featured-image"><img src={featured.image} alt="Modern glass architecture" loading="lazy" width="700" height="400"/><span class="eyebrow">{featured.sector}</span></div><div class="featured-copy"><span class="example-label">Illustrative case study</span><h3>{featured.title}</h3><p>{featured.summary}</p><span class="text-link">Explore the approach <span aria-hidden="true">⟶</span></span></div></a></section>
+    <section class="insights-section" aria-labelledby="insights-title"><div class="section-label"><span class="eyebrow">Ideas for what’s next</span></div><div class="section-heading"><h2 id="insights-title">A fresh perspective.</h2><a href="/blog/" class="text-link">All insights <span aria-hidden="true">⟶</span></a></div><div class="post-grid">{posts.slice(0,3).map((post,index) => <PostCard post={post} index={index}/>)}</div></section>
+  </div><CTA />
+</Layout>

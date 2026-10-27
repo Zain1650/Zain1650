@@ -1,0 +1,6 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CTA from '../../components/CTA.astro';
+import {caseStudies} from '../../data/content';
+---
+<Layout title="Ideas in practice" description="Explore illustrative approaches to cloud modernisation, responsible AI and technology strategy."><div class="wrap"><section class="page-hero"><div class="eyebrow">Case studies</div><h1>From possibility<br/>to a practical plan.</h1><p>Explore how our expertise can come together to address real business challenges.</p></section><section class="page-section"><p class="notice">The scenarios below illustrate our approach. They are not completed client engagements or reported client results.</p><div class="case-grid">{caseStudies.map(item=><article class="case-card"><a class="featured-image" href={`/case-studies/${item.slug}/`} tabindex="-1" aria-hidden="true"><img src={item.image} alt="" loading="lazy" width="700" height="420"/><span class="eyebrow">{item.sector}</span></a><span class="example-label">{item.label}</span><h2><a href={`/case-studies/${item.slug}/`}>{item.title}</a></h2><p>{item.summary}</p><a class="text-link" href={`/case-studies/${item.slug}/`}>Explore the approach <span aria-hidden="true">⟶</span></a></article>)}</div></section></div><CTA/></Layout>
